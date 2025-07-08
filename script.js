@@ -1,5 +1,5 @@
 async function getAnalyticsData(token) {
-  const propertyId = "475548618"; // 👈 Replace with your real property ID
+  const propertyId = "475548618"; // 👈 Replace this with your real ID
 
   const response = await fetch(
     `https://analyticsdata.googleapis.com/v1beta/properties/${propertyId}:runReport`,
@@ -7,13 +7,13 @@ async function getAnalyticsData(token) {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         dateRanges: [{ startDate: "7daysAgo", endDate: "today" }],
         dimensions: [{ name: "country" }],
-        metrics: [{ name: "activeUsers" }],
-      }),
+        metrics: [{ name: "activeUsers" }]
+      })
     }
   );
 
