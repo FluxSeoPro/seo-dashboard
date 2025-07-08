@@ -9,17 +9,13 @@
 </head>
 <body>
   <h1>SEO Dashboard</h1>
-
-  <!-- Google Sign-In -->
   <div id="signin-button"></div>
-
-  <!-- Output area -->
   <pre id="output">Login to view data...</pre>
 
   <script>
     window.onload = () => {
       google.accounts.id.initialize({
-        client_id: "37925044671-4dspu8brip9j6njgf1c31lkcg9eupkta.apps.googleusercontent.com", // 👈 Replace this
+        client_id: "YOUR_CLIENT_ID.apps.googleusercontent.com",
         callback: handleCredentialResponse
       });
 
@@ -30,11 +26,11 @@
     };
 
     function handleCredentialResponse(response) {
-     document.getElementById("output").innerText = "Login Success! Fetching data...";
-      getAnalyticsData(response.credential);
-  
-      // NOTE: This token can be used to authenticate Google Analytics API later
+      document.getElementById("output").innerText = "Login Success! Fetching data...";
+      getAnalyticsData(response.credential); // ⬅️ From external file
     }
   </script>
+
+  <script src="script.js"></script> <!-- 👈 Load external JS here -->
 </body>
 </html>
