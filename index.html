@@ -30,9 +30,9 @@
     };
 
     function handleCredentialResponse(response) {
-      document.getElementById("output").innerText =
-        "Login Success!\n\nID Token:\n" + response.credential;
-
+     document.getElementById("output").innerText = "Login Success! Fetching data...";
+      getAnalyticsData(response.credential);
+  
       // NOTE: This token can be used to authenticate Google Analytics API later
     }
   </script>
