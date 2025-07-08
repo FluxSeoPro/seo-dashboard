@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>SEO Analytics Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://apis.google.com/js/api.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>SEO Analytics Dashboard</h1>
+    <button id="login-button">Sign in with Google</button>
+
+    <div id="dashboard" style="display:none;">
+      <p><strong>Website:</strong> <span id="site-url"></span></p>
+      <canvas id="chart" width="600" height="200"></canvas>
+      <h3>Top Queries</h3>
+      <table>
+        <thead>
+          <tr><th>Query</th><th>Clicks</th><th>Impressions</th><th>CTR</th></tr>
+        </thead>
+        <tbody id="results"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
