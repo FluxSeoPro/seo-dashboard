@@ -1,30 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>SEO Analytics Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEO Dashboard</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://apis.google.com/js/api.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
-  <div class="container">
-    <h1>SEO Analytics Dashboard</h1>
-    <button id="login-button">Sign in with Google</button>
+  <h1>SEO Dashboard</h1>
 
-    <div id="dashboard" style="display:none;">
-      <p><strong>Website:</strong> <span id="site-url"></span></p>
-      <canvas id="chart" width="600" height="200"></canvas>
-      <h3>Top Queries</h3>
-      <table>
-        <thead>
-          <tr><th>Query</th><th>Clicks</th><th>Impressions</th><th>CTR</th></tr>
-        </thead>
-        <tbody id="results"></tbody>
-      </table>
-    </div>
-  </div>
+  <!-- Google Sign-In -->
+  <div id="signin-button"></div>
 
-  <script src="script.js"></script>
+  <!-- Output area -->
+  <pre id="output">Login to view data...</pre>
+
+  <script>
+    window.onload = () => {
+      google.accounts.id.initialize({
+        client_id: "37925044671-4dspu8brip9j6njgf1c31lkcg9eupkta.apps.googleusercontent.com", // 👈 Replace this
+        callback: handleCredentialResponse
+      });
+
+      google.accounts.id.renderButton(
+        document.getElementById("signin-button"),
+        { theme: "outline", size: "large" }
+      );
+    };
+
+    function handleCredentialResponse(response) {
+      document.getElementById("output").innerText =
+        "Login Success!\n\nID Token:\n" + response.credential;
+
+      // NOTE: This token can be used to authenticate Google Analytics API later
+    }
+  </script>
 </body>
 </html>
