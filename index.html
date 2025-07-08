@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SEO Analytics Dashboard</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -22,7 +23,7 @@
       margin-bottom: 20px;
     }
     .dashboard {
-      display: grid;
+      display: none;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
       max-width: 1000px;
@@ -45,13 +46,15 @@
       color: #777;
     }
   </style>
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
   <h1>SEO Analytics Dashboard</h1>
+
+  <!-- Sign-In Button -->
   <div id="signin-button"></div>
 
-  <div class="dashboard" id="dashboard" style="display:none;">
+  <!-- Dashboard Cards -->
+  <div class="dashboard" id="dashboard">
     <div class="card">
       <div class="metric" id="total-users">--</div>
       <div class="label">Total Users</div>
@@ -62,4 +65,35 @@
     </div>
     <div class="card">
       <div class="metric" id="device-type">--</div>
-      <di
+      <div class="label">Mobile vs Desktop</div>
+    </div>
+    <div class="card">
+      <div class="metric" id="new-vs-returning">--</div>
+      <div class="label">New vs Returning</div>
+    </div>
+  </div>
+
+  <!-- Google Sign-In Logic -->
+  <script>
+    window.onload = () => {
+      google.accounts.id.initialize({
+        client_id: "37925044671-4dspu8brip9j6njgf1c31lkcg9eupkta.apps.googleusercontent.com",
+        callback: handleCredentialResponse
+      });
+
+      google.accounts.id.renderButton(
+        document.getElementById("signin-button"),
+        { theme: "outline", size: "large" }
+      );
+    };
+
+    function handleCredentialResponse(response) {
+      document.getElementById("dashboard").style.display = "grid";
+      getAnalyticsData(response.credential);
+    }
+  </script>
+
+  <!-- Analytics Logic -->
+  <script src="script.js"></script>
+</body>
+</html>
